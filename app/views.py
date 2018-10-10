@@ -1,11 +1,11 @@
+from datetime import datetime, timedelta
+
 from flask import session, render_template, request, flash
 from flask_login import current_user, login_user, login_required, logout_user
 
-from functions import user_add
 from app import app, db, login_manager
-from app.models import User, user_info
+from app.models import User, user_info, Training
 from tables import Results
-from datetime import datetime, timedelta
 
 poll_data = {
     'question': 'Ваш пол?',
@@ -60,6 +60,7 @@ def index():
 def hom():
     return 'The cerrent user is' + current_user.username
 
+
 @app.route('/')
 def empty_page():
     if not session.get('logged_in'):
@@ -71,6 +72,7 @@ def empty_page():
             return home_render()
         else:
             return welcome()
+
 
 @app.route('/login')
 def home():
@@ -90,10 +92,12 @@ def home():
 def test_page_render():
     return render_template('voronka/walletone.html')
 
+
 @app.route('/register')
 def register_render():
     print('Я тут!')
     return render_template('register.html')
+
 
 @app.route('/register', methods=['POST'])
 def do_register():
@@ -141,7 +145,7 @@ def welcome():
 
 @app.route('/poll')
 def root():
-    return render_template('pages/test/sex.html', data = poll_data)
+    return render_template('pages/test/sex.html', data=poll_data)
 
 
 @app.route('/poll', methods=['POST'])
@@ -149,9 +153,9 @@ def poll():
     print('Я тут был!')
     vote = request.form["sex"]
     print(vote)
-    if (vote == "Мужчина"):
+    if vote == "Мужчина":
         value = 1
-    elif (vote == "Женщина"):
+    elif vote == "Женщина":
         value = 2
     else:
         value = 3
@@ -202,9 +206,9 @@ def activity_root():
 def activity_poll():
     res = request.form['activity']
     print('activity is ', res)
-    if (res == "Низкая"):
+    if res == "Низкая":
         act = 1
-    elif (res == "Средняя"):
+    elif res == "Средняя":
         act = 2
     else:
         act = 3
@@ -261,7 +265,6 @@ def userinfo_add_render():
 
 @app.route('/useradding', methods=['POST'])
 def user_add_info():
-
     mass = request.form['mass']
     chest = request.form['chest']
     left_hand = request.form['left_hand']
@@ -350,7 +353,7 @@ def eat_render():
         kkalor_ost = kkal_norma - user.kkal
         belok_ost = belki - user.belki
         jiry_ost = giry - user.jiry
-        ugli_ost= ugl - user.ugli
+        ugli_ost = ugl - user.ugli
 
         return render_template('pages/system/eat.html',
                                kkalor=user.kkal,
@@ -375,14 +378,11 @@ def eat_add():
 
 @app.route('/train')
 def train_render():
-
     user = User.query.get(current_user.id)
-
 
     if user.day_train == None:
         user.day_train = 1
         db.session.commit()
-
 
     exer_1 = ''
     exer_2 = ''
@@ -400,7 +400,6 @@ def train_render():
 
     day_key = user.train
 
-
     day_of_train = {
         1: '1 DAY',
         2: '2 DAY',
@@ -413,7 +412,6 @@ def train_render():
 
     a = datetime.now()
     b = timedelta(days=1)
-
 
     print(a.day)
     print(user.day_train)
@@ -436,7 +434,6 @@ def train_render():
             url_2 = 'OhhXifdyhxs'
             url_3 = 'Sz0naPQqnPY'
             url_4 = 'XpnZE9JzRto'
-
 
         if day_key == 2:
             exer_1 = 'Выходной'
@@ -475,7 +472,6 @@ def train_render():
 
 @app.route('/home', methods=['POST'])
 def start_home():
-
     user = User.query.get(current_user.id)
     username = user.username
     print(username)
@@ -519,17 +515,21 @@ def article_render():
 def video_main_render():
     return render_template('video/video_main.html')
 
+
 @app.route('/video/1', methods=['GET', 'POST'])
 def video_1_render():
     return render_template('video/1_video.html')
+
 
 @app.route('/video/2', methods=['GET', 'POST'])
 def video_2_render():
     return render_template('video/2_video.html')
 
+
 @app.route('/video/3', methods=['GET', 'POST'])
 def video_3_render():
     return render_template('video/3_video.html')
+
 
 @app.route('/video/4', methods=['GET', 'POST'])
 def video_4_render():
@@ -547,10 +547,10 @@ def calculator():
 
     m = mass
 
-    if (gender == 1):
+    if gender == 1:
         Dn = (6.83 * m + 7 * (m * 26.67 * r * (1 + l))) * 0.13
         return Dn
-    elif (gender == 2):
+    elif gender == 2:
         Dn = (5.94 * m + 7 * (m * 24.44 * r * (1 + l))) * 0.13
         return Dn
     else:
@@ -573,7 +573,6 @@ def ugl_cal():
 
 
 def r_calc():
-
     user = User.query.get(current_user.id)
     age = int(user.data)
     r = 1
@@ -591,102 +590,118 @@ def r_calc():
 
 
 def l_calc():
-
     user = User.query.get(current_user.id)
-    activity = 1
     activity = int(user.activity)
-    l = 0.06
-    if (activity == 1):
+    if activity == 1:
         l = 0.05
-    elif (activity == 2):
+    elif activity == 2:
         l = 0.06
-    elif (activity == 3):
+    elif activity == 3:
         l = 0.07
     else:
         l = 0.06
     return float(l)
 
+
 @app.route('/payment/redirect/98rubles', methods=['GET', 'POST'])
 def payment_98():
     return render_template('payment/payment_98.html')
+
 
 @app.route('/payment/redirect/test1rub', methods=['GET', 'POST'])
 def payment_1rub():
     return render_template('payment/test1rub.html')
 
-@app.route('/payment/redirect/2990',methods=['GET', 'POST'])
+
+@app.route('/payment/redirect/2990', methods=['GET', 'POST'])
 def payment_2990():
     return render_template('payment/payment_2990.html')
 
 
-
-@app.route('/test/start',methods=['GET', 'POST'])
+@app.route('/test/start', methods=['GET', 'POST'])
 def start_test():
     return render_template('quiz/index.html')
+
 
 @app.route('/test/gender', methods=['GET', 'POST'])
 def gender_test():
     return render_template('quiz/sex.html')
 
+
 @app.route('/test/age', methods=['GET', 'POST'])
 def age_test():
     return render_template('quiz/age.html')
 
-@app.route('/test/experience',methods=['GET', 'POST'])
+
+@app.route('/test/experience', methods=['GET', 'POST'])
 def experience_test():
     return render_template('quiz/experience.html')
 
+
 @app.route('/zeropoint/boom')
 def crash_user():
-    for i in range(1,999):
+    for i in range(1, 999):
         user = User.query.get(i)
         user.username = None
         user.password = None
         db.session.commit()
     return 'shit happend'
-@app.route('/test/feed',methods=['GET', 'POST'])
+
+
+@app.route('/test/feed', methods=['GET', 'POST'])
 def feed_test():
     return render_template('quiz/feed.html')
 
-@app.route('/test/training',methods=['GET', 'POST'])
+
+@app.route('/test/training', methods=['GET', 'POST'])
 def training_test():
     return render_template('quiz/training.html')
 
-@app.route('/test/submit',methods=['GET', 'POST'])
+
+@app.route('/test/submit', methods=['GET', 'POST'])
 def submit_test():
     return render_template('quiz/submit.html')
 
-@app.route('/test/final',methods=['GET', 'POST'])
+
+@app.route('/test/final', methods=['GET', 'POST'])
 def final_test():
     return render_template('quiz/final.html')
+
 
 @app.route('/tw')
 def tw_render():
     return render_template('quiz/tw.html')
 
+
 @app.route('/cp')
 def cp_render():
     return render_template('quiz/cp.html')
+
 
 @app.route('/food')
 def food_render():
     return render_template('pages/system/eat.html')
 
+
 @app.route('/tr')
+@login_required
 def tr_render():
-    return render_template('pages/system/train.html')
+    registration_date = current_user.registration_date
+    day = ((datetime.now() - registration_date).days % 31) + 1
+    training = Training.query.filter_by(day=day).first()
+    return render_template('pages/system/train.html', training=training)
+
 
 @app.route('/prog')
 def prog_render():
     return render_template('pages/system/progress.html')
+
 
 @app.route('/menu')
 def menu_render():
     return render_template('pages/system/menu.html')
 
 
-
 @app.route('/next_day', methods=['POST'])
 def success_train_changer():
     return render_template('pages/lk/welldone.html')
-
