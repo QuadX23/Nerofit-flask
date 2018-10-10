@@ -42,24 +42,24 @@
                 </div>
                 <div class="train_middle">
                     {% if training %}
-                        <table>
-                            <tr>
-                                <td><span>&nbsp &nbsp Разминка</span></td>
-                                <td>
-                                    <button></button>
-                                </td>
-                            </tr>
-                            {% for exercise in training.exercises %}
-                                <tr>
-                                    <td class="train_descr">{{ loop.index }}. <span>{{ exercise.name }}</span><br/>
-                                        &nbsp &nbsp {{ exercise.description }}
-                                    </td>
-                                    <td>
-                                        <button>{{ exercise.video.url }}</button>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </table>
+                        {% if training.day_off %}
+                            <h1 class="text-center">Сегодня выходной. Тренировка появится завтра.</h1>
+                        {% else %}
+                            <table>
+                                {% for exercise in training.exercises %}
+                                    <tr>
+                                        <td class="train_descr">{% if loop.index0 %}{{ loop.index0 }}
+                                            . {% endif %}<span>{{ exercise.name }}</span><br/>
+                                            &nbsp &nbsp {{ exercise.description }}
+                                        </td>
+                                        <td>
+                                            <button class="js-video-button"
+                                                    data-video-id='{{ exercise.video.url }}'></button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        {% endif %}
                     {% else %}
                         <h1 class="text-center">Не найдено тренировок</h1>
                     {% endif %}
@@ -75,6 +75,17 @@
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
     <script src="/static/js/main.js"></script>
+    <script src="/static/js/jquery-modal-video.min.js"></script>
+    <script>
+        $(function () {
+            $(".js-video-button").modalVideo({
+                youtube: {
+                    controls: 0,
+                    nocookie: true
+                }
+            });
+        })
+    </script>
 {% endif %}
 </body>
 </html>

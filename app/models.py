@@ -94,6 +94,7 @@ class TrainingExercise(db.Model):
 class Training(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     day = db.Column(db.Integer)
+    day_off = db.Column(db.Boolean, default=False)
     exercises = db.relationship(
         'TrainingExercise',
         secondary=exercises,
