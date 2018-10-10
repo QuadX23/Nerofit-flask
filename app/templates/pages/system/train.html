@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/system/style.css") }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/system/font-awesome.css") }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/system/bootstrap.css") }}"/>
+    <link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet">
+</head>
+<body class="train_page">
+ {% if not session['logged_in'] %}
+        <p><a href="/logout">Log in</a></p>
+    {% else %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 col-12 col-sm-12 col-md-12 train_main">
+            <div class="train_top">
+                <div class="train_menu">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <h1>Тренировка</h1>
+            </div>
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-3">
+                            <div class="close_menu">
+                                +
+                            </div>
+                            <nav class="train_nav">
+                                <li class="home"><a href="/menu">Главная</a></li>
+                                <li class="food"><a href="/eat">Питание</a></li>
+                                <li class="train train_active active_li"><a class="active_link"
+                                                                            href="/tr">Тренировка</a></li>
+                                <li class="prog"><a href="/prog">Прогресс</a></li>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="train_middle">
+                <table>
+                    <tr>
+                        <td><span>&nbsp &nbsp Разминка</span></td>
+                        <td>
+                            <button></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="train_descr">1. <span>Приседания</span><br/>
+                            &nbsp &nbsp 18 повторений х 4 подхода
+                        </td>
+                        <td>
+                            <button></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="train_descr">2. <span>Ягодичный мостик</span><br/>&nbsp &nbsp 15 повторений х 3
+                            подхода
+                        </td>
+                        <td>
+                            <button></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="train_descr">3. <span>Отжимания с колен</span><br/>&nbsp &nbsp 10 повторений х 3
+                            подхода
+                        </td>
+                        <td>
+                            <button></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="train_descr">4. <span>Скалолаз</span><br/>&nbsp &nbsp 15 повторений х 4 подхода<br/>&nbsp
+                            &nbsp &nbspна каждую сторону
+                        </td>
+                        <td>
+                            <button></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="train_bottom">
+                <button class="complete">Выполнить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+ <script src="/static/js/main.js"></script>
+ {% endif %}
+</body>
+</html>

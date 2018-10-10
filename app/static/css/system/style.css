@@ -1,0 +1,633 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Play, sans-serif;	
+}
+
+button {
+	color: #2b2b2b;
+    font-family: Play, sans-serif;
+    font-weight: 700;
+    border-radius: 40px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0px 8px 14px rgba(0,0,0,0.36);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    line-height: 25px;
+    width: 46%;	
+}
+
+button:hover {
+    -webkit-transform: scale(0.92);
+    transform: scale(0.92);
+    transition: all .2s ease;
+}
+
+button:active,
+button:focus {
+	border: none;
+}
+
+.main {
+	background-color: #000;
+}
+
+.main li:active {
+	background-color: #fff;
+}
+
+.main li:active a {
+	color: #000;
+}
+
+.food_page,
+.train_page,
+.result_page {
+	background-color: #ebebeb;
+}
+
+nav {
+	list-style-type: none;
+	margin-top: 50px;	
+}
+
+nav li {
+	width: 100%;
+	border: 1px solid #AFAFAF;
+	text-align: center;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	background-position: center top 20px;
+	background-repeat: no-repeat;		
+}
+
+nav .active_li {
+	background-color: #fff;
+}
+
+nav .active_link {
+	color: #000;
+}
+
+.main_nav li {
+	background-position: center top 20px;
+	background-repeat: no-repeat;
+}
+
+nav .food {
+	background-image: url(/static/img/system/drink.png);
+}
+
+nav .food_active {
+	background-image: url(/static/img/system/drink_active.png);
+}
+
+nav .train {
+	background-image: url(/static/img/system/train.png);
+}
+
+nav .train_active {
+	background-image: url(/static/img/system/train_active.png);
+}
+
+nav .prog {
+	background-image: url(/static/img/system/progress.png);
+}
+
+nav .home {
+	background-image: url(/static/img/system/home.png);
+}
+
+nav li a {
+	background-color: transparent;
+	color: #fff;
+	font-size: 50px;
+	font-weight: 700;
+	display: inline-block;
+	padding: 120px 0 20px;
+	width: 100%;			
+}
+
+nav li a:hover {
+	text-decoration: none;
+}
+
+.food_nav,
+.train_nav,
+.result_nav {
+	margin-top: 15px;	
+}
+
+.food_nav li a,
+.train_nav li a,
+.result_nav li a {
+	padding: 30px 0 30px 125px;
+}
+
+.food_nav li,
+.train_nav li,
+.result_nav li {
+	background-position: center left 50px;
+}
+
+.food_nav .home {
+	background-image: url(/static/img/system/home.png);
+}
+
+.food_main,
+.train_main,
+.result_main {
+	margin-top: 60px;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+.food_top,
+.train_top,
+.result_top {
+	padding: 15px;
+	text-align: center;	
+	position: relative;				
+}
+
+.food_top .food_menu,
+.train_top .train_menu,
+.result_top .result_menu {
+	position: absolute;
+	top: 30px;
+	left: 130px;
+}
+
+.overlay {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: right top;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+    z-index: 999;
+    background-color: #000;
+    display: none;
+}
+
+.open_menu {
+    border: 0;
+    font-size: 50px;
+    background-color: transparent;
+}
+
+.close_menu {
+	color: #FCD10A;
+    font-size: 60px;
+    font-weight: 700;
+    position: absolute;
+    top: 10px;
+    left: -60px;
+    cursor: pointer;
+        -webkit-transform: matrix(0.7071,0.7071,-0.7071,0.7071,38,-16);
+    -ms-transform: matrix(0.7071,0.7071,-0.7071,0.7071,38,-16);
+    transform: matrix(0.7071,0.7071,-0.7071,0.7071,38,-16);
+}
+
+.close_menu:hover {
+	color: #fff;
+}
+
+.food_top h1,
+.train_top h1 {
+	font-size: 50px;
+	font-weight: 700;
+	text-shadow: 6px 6px 8px rgba(0,0,0,0.2);
+	line-height: 1;		
+}
+
+.food_middle {
+	font-size: 22px;
+	font-weight: 700;
+		border-collapse: separate;
+    border-spacing: 20px 15px;	
+}
+
+.food_page table {
+	border-collapse: separate;
+    border-spacing: 30px 15px;
+}
+
+.food_page td {
+	width: 110px;
+	padding: 15px 0;
+	font-weight: 700;	
+}
+
+.mobile {
+	text-align: center;	
+}
+
+.food_middle .middle_title {
+	font-size: 30px;
+	padding: 20px 0 10px;
+}
+
+.food_middle li span {
+	font-size: 22px;	
+}
+
+.result_top table {
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid #000;
+	border-spacing: 0;	
+}
+
+.result_top table td {
+	border: 1px solid #000;
+	height: 25px;
+}
+
+.result_top .ri_first {
+	border-top-left-radius: 10px;
+}
+
+.result_top .ri_last {
+	border-top-right-radius: 10px;
+}
+
+.result_middle .rm_title {
+	text-align: center;
+	padding-top: 20px;		
+}
+
+.result_middle {
+	font-size: 22px;
+	font-weight: 400;	
+}
+
+.result_middle h2 {
+	text-align: center;
+	font-size: 25px;
+	font-weight: 700;			
+}
+
+.result_top .result_index {
+	background-color: #fcd10a;
+}
+
+.result_middle table {
+	margin: 0 auto;
+	border-spacing: 40px 0; 
+}
+
+.result_bottom {
+	padding-top: 20px;	
+}
+
+.rb_container {
+	width: 32%;
+}
+
+.rb_container {
+	display: inline-block;
+}
+
+.rb_container table {
+	width: 100%;	
+}
+
+.rb_container table td {
+	width: 50%;
+	text-align: center;
+	font-weight: bold;			
+}
+
+.rb_container .rb_space {
+	height: 100px;
+	border: 1px solid #000;
+}
+
+.result_bottom .rb_btn {
+	padding-top: 20px;
+	text-align: center;	
+}
+
+
+.result_bottom .rb_btn button {
+	    background-color: #FCD10A;
+	    font-size: 30px;
+	    width: auto;
+	    padding: 20px 60px;	
+}
+
+.table_amount,
+.table_index {
+	text-align: center;
+	margin: 0 20px;	
+}
+
+.table_index {
+	padding: 5px 0;
+}
+
+.table_amount {
+	border: 1px solid #FCD10A;
+	border-radius: 50%;
+	font-size: 22px;	
+}
+
+.table_amount span {
+	font-size: 30px;
+}
+
+.add_food {
+	background-color: #FCD10A;
+	    font-size: 30px;
+}
+
+.create {
+	background-color: #fff;
+	border: 2px solid #FCD10A;
+	font-size: 27px;
+	float: right;
+}
+
+.food_bottom {
+	padding-top: 20px;	
+}
+
+.train_middle {
+	padding-top: 60px;	
+	font-size: 23px;
+	font-weight: 400;
+	color: #000;
+}
+
+.train_middle span {
+	font-weight: 700;	
+}
+
+.train_middle table {
+	border-spacing: 10px 10px;	
+}
+
+.train_middle td {
+	line-height: 1;	
+}
+
+.train_middle button {
+	background-image: url(/static/img/system/train_step.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	border-radius: 0;
+	box-shadow: none;
+	background-color: #000;
+	width: 61px;
+	height: 30px;	
+}
+
+.train_bottom {
+	margin-top: 60px;
+	text-align: center;	
+}
+
+.train_bottom button {
+	font-size: 29px;
+	background-color: #fcd10a;
+	padding: 15px 60px;
+	width: auto;
+}
+
+.train_main {
+	padding-bottom: 30px;	
+}
+
+@media screen and (max-width: 767px) {
+
+	.train_main,
+	.food_main {
+		margin-top: 0;
+		padding-bottom: 100px;	
+	}
+
+	.desk {
+		display: none;
+	}
+
+	.overlay {
+		display: block;
+	}
+
+	.train_menu,
+	.food_menu,
+	.result_menu {
+		display: none;
+	}
+
+	.mobile {
+		display: block;
+	}
+	.main_nav {
+		margin-top: 10px;	
+	}
+
+	.food_top .food_menu, .train_top .train_menu {
+		left: 30px;
+	}
+
+	.food_middle li {
+	font-size: 20px;	
+    display: inline-block;
+    width: 23%;
+    border: 1px solid #FCD10A;
+    border-radius: 50%;
+    padding: 30px 0px;
+    line-height: 1;	
+}
+
+.food_bottom {
+	text-align: center;	
+}
+
+.food_bottom .create {
+	float: none;
+}
+
+.food_bottom button {
+	width: 80%;
+	margin: 10px 0;	
+}
+
+	.overlay nav .food {
+	background-image: url(/static/img/system/drink_overlay.png);
+	}
+
+	.overlay nav .food_active {
+	background-image: url(/static/img/system/drink.png);
+	}
+
+	.overlay nav .train {
+		background-image: url(/static/img/system/train_overlay.png);
+	}
+
+	.overlay nav .train_active {
+		background-image: url(/static/img/system/train.png);
+	}
+
+	.overlay nav .prog {
+		background-image: url(/static/img/system/progress_overlay.png);
+	}
+
+	.overlay nav .prog_active {
+		background-image: url(/static/img/system/progress.png);
+	}
+
+	.overlay nav .home {
+		background-image: url(/static/img/system/home_overlay.png);
+}	
+.overlay nav li {
+	background-color: #000;
+}
+.close_menu {
+	display: none;
+}
+
+	.main_nav li {
+	background-position: center top 15px;	
+}
+
+
+.overlay {
+	height: 10%;
+}
+
+.overlay nav {
+	margin-top: 0;	
+}
+
+.overlay nav li {
+	width: 24%;
+	display: inline-block;
+	border: none;
+	background-position: center center;
+	-webkit-background-size: 70%;
+	background-size: 60%;	
+}
+
+.overlay nav li a {
+    padding: 27px 20px;
+    font-size: 10px;
+    color: transparent;
+}
+
+.food_middle {
+	text-align: center;	
+}
+
+.train_middle table {
+	width: 100%;	
+}
+
+.result_top table {
+	display: none
+}
+
+.result_middle {
+	font-size: 15px;
+}
+
+.result_middle table {
+	border-spacing: 6px 6px;
+}
+
+.rb_container {
+	width: 100%;
+}
+
+.rb_container table {
+	width: 50%;
+	margin: 0 auto;	
+}
+}
+
+@media screen and (max-width: 480px) {
+		.main_nav li a {
+		    padding: 100px 0 0px;
+	}
+
+	nav li a {
+		font-size: 40px;	
+	}
+
+	.train_middle {
+		font-size: 18px;	
+	}
+}
+
+@media screen and (max-width: 369px) {
+	.food_middle li {
+	font-size: 16px;	
+    display: inline-block;
+    width: 65px;
+    border: 1px solid #FCD10A;
+    border-radius: 50%;
+    padding: 15px 0px;
+    line-height: 1;	
+}
+.food_bottom button {
+	font-size: 18px;	
+}
+}
+
+@media screen and (min-width: 370px) and (max-width: 450px) {
+	.food_middle li {
+		padding: 15px 0;
+	}
+	.food_bottom button {
+		font-size: 18px;	
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.train_middle table {
+		margin: 0 auto;
+	}
+}
+
+@media screen and (min-width: 450px) and (max-width: 767px) {
+	.food_middle li {
+	font-size: 20px;	
+    display: inline-block;
+    width: 23%;
+    border: 1px solid #FCD10A;
+    border-radius: 50%;
+    padding: 30px 0px;
+    line-height: 1;	
+}
+
+.food_middle li span {
+	font-size: 30px;	
+}
+}
+
+@media screen and (min-width: 768px) {
+	.mobile {
+		display: none;
+	}
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 995px) {
+	.food_page td {
+		width: 110px;	
+	}
+
+	.food_page table {
+    border-spacing: 20px 15px;
+}
+
+.create {
+	font-size: 25px;	
+}
+}

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>	</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/system/style.css") }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/system/font-awesome.css") }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/system/bootstrap.css") }}"/>
+	<link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet">
+</head>
+<body class="result_page">
+ {% if not session['logged_in'] %}
+        <p><a href="/logout">Log in</a></p>
+    {% else %}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 col-12 col-sm-12 col-md-12 train_main">
+				<div class="result_top">
+					<div class="result_menu">
+						<i class="fa fa-bars"></i>
+					</div>
+					<div class="overlay">
+				 	<div class="container">
+				 		<div class="row">
+				 			<div class="col-lg-6 offset-lg-3">
+				 				<div class="close_menu">
+                        +
+                    </div>
+                    <nav class="food_nav">
+                    <li class="home"><a href="/menu">Главная</a></li>
+					<li class="food"><a href="/eat">Питание</a></li>
+					<li class="train"><a href="/tr">Тренировка</a></li>
+					<li class="prog prog_active active_li"><a class="active_link" href="/prog">Прогресс</a></li>
+				</nav>
+				 			</div>
+				 		</div>
+				 	</div>
+                </div>
+					<h1>Результаты</h1>
+					<table>
+						<tr>
+							<td class="result_index ri_first">День</td>
+							<td class="result_index">Дата</td>
+							<td class="result_index">Вес</td>
+							<td class="result_index">Грудь</td>
+							<td class="result_index">Талия</td>
+							<td class="result_index">Ягодицы</td>
+							<td class="result_index">Фото спереди</td>
+							<td class="result_index">Фото сзади</td>
+							<td class="result_index ri_last">Фото сбоку</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<div class="result_middle">
+					<h2>Ваш прогресс за х недель:</h2>
+					<div class="rm_data">
+						<div class="rm_title">Вес:</div>
+					</div>
+					<table>
+						<tr>
+							<td>Грудь: </td>
+							<td>Талия: </td>
+						</tr>
+						<tr>
+							<td>Талия: </td>
+							<td>Ягодицы: </td>
+						</tr>
+						<tr>
+							<td>Левая рука: </td>
+							<td>Правая рука: </td>
+						</tr>
+						<tr>
+							<td>Левое бедро: </td>
+							<td>Правое бедро: </td>
+						</tr>
+						<tr>
+							<td>Левая голень: </td>
+							<td>Правая голень:</td>
+						</tr>
+					</table>
+				</div>
+<div class="result_bottom">
+	<div class="rb_container">
+		<table>
+			<tr>
+				<td>01.02.2018</td>
+				<td>01.03.2018</td>
+			</tr>
+			<tr>
+				<td class="rb_space"></td>
+				<td class="rb_space"></td>
+			</tr>
+			<tr>
+				<td>до</td>
+				<td>после</td>
+			</tr>
+		</table>
+	</div>
+	<div class="rb_container">
+		<table>
+			<tr>
+				<td>01.02.2018</td>
+				<td>01.03.2018</td>
+			</tr>
+			<tr>
+				<td class="rb_space"></td>
+				<td class="rb_space"></td>
+			</tr>
+			<tr>
+				<td>до</td>
+				<td>после</td>
+			</tr>
+		</table>
+	</div>
+	<div class="rb_container">
+		<table>
+			<tr>
+				<td>01.02.2018</td>
+				<td>01.03.2018</td>
+			</tr>
+			<tr>
+				<td class="rb_space"></td>
+				<td class="rb_space"></td>
+			</tr>
+			<tr>
+				<td>до</td>
+				<td>после</td>
+			</tr>
+		</table>
+	</div>
+	<div class="rb_btn">
+		<button class="report">Добавить отчет</button>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+         <script src="/static/js/main.js"></script>
+                 {% endif %}
+</body>
+</html>

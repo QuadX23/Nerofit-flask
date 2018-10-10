@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>	</title>
+	 <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/system/style.css") }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/system/bootstrap.css") }}"/>
+	<link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet">
+</head>
+<body class="main">
+ {% if not session['logged_in'] %}
+        <p><a href="/logout">Log in</a></p>
+    {% else %}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 col-12 col-sm-12 col-md-12">
+				<nav class="main_nav">
+					<li class="food"><a href="/eat">Питание</a></li>
+					<li class="train "><a href="/tr">Тренировка</a></li>
+					<li class="prog"><a href="/prog">Прогресс</a></li>
+				</nav>
+			</div>
+		</div>
+	</div>
+ {% endif %}
+</body>
+</html>

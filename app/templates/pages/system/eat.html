@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/system/style.css") }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/system/font-awesome.css") }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/system/bootstrap.css") }}"/>
+    <link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet">
+</head>
+<body class="food_page">
+{% if not session['logged_in'] %}
+    <p><a href="/logout">Log in</a></p>
+{% else %}
+    <span><div class="container">
+		<div class="row">
+			<div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 сol-12 col-sm-12 col-md-12 food_main">
+				<div class="food_top">
+					<div class="food_menu">
+						<i class="fa fa-bars"></i>
+					</div>
+					<h1>Питание</h1>
+				</div>
+				 <div class="overlay">
+				 	<div class="container">
+				 		<div class="row">
+				 			<div class="col-lg-6 offset-lg-3">
+				 				<div class="close_menu">
+                        +
+                    </div>
+                    <nav class="food_nav">
+                    <li class="home"><a href="/menu">Главная</a></li>
+					<li class="food food_active active_li"><a class="active_link"
+                                                              href="/eat">Питание</a></li>
+					<li class="train"><a
+                            href="/tr">Тренировка</a></li>
+					<li class="prog"><a
+                            href="/prog">Прогресс</a></li>
+				</nav>
+				 			</div>
+				 		</div>
+				 	</div>
+                </div>
+
+				<div class="food_middle desk">
+					<table>
+						<tr>
+							<td></td>
+							<td class="table_index">Калории:</td>
+							<td class="table_index">Белки:</td>
+							<td class="table_index">Жиры:</td>
+							<td class="table_index">Углеводы:</td>
+						</tr>
+						<tr>
+							<td>Всего:</td>
+							<td class="table_amount"><span>{{ kkal_norma }}</span><br/>ккал</td>
+							<td class="table_amount"><span>{{ belki }}</span><br/>грамм</td>
+							<td class="table_amount"><span>{{ giry }}</span><br/>грамм</td>
+							<td class="table_amount"><span>{{ ugl }}</span><br/>грамм</td>
+						</tr>
+						<tr>
+							<td>Съедено:</td>
+							<td class="table_amount"><span>{{ kkalor }}</span><br/>ккал</td>
+							<td class="table_amount"><span>{{ belok }}</span><br/>грамм</td>
+							<td class="table_amount"><span>{{ jiry }}</span><br/>грамм</td>
+							<td class="table_amount"><span>{{ ugli }}</span><br/>грамм</td>
+						</tr>
+						<tr>
+							<td>Осталось</td>
+							<td class="table_amount"><span>{{ kkalor_ost }}</span><br/>ккал</td>
+							<td class="table_amount"><span>{{ belok_ost }}</span><br/>грамм</td>
+							<td class="table_amount"><span>{{ jiry_ost }}</span><br/>грамм</td>
+							<td class="table_amount"><span>{{ ugli_ost }}</span><br/>грамм</td>
+						</tr>
+					</table>
+				</div>
+				<div class="food_middle mobile">
+					<div class="middle_container">
+						<div class="middle_title">Всего:</div>
+					<li><span>{{ kkal_norma }}</span><br/>ккал</li>
+					<li><span>{{ belki }}</span><br/>грамм</li>
+					<li><span>{{ giry }}</span><br/>грамм</li>
+					<li><span>{{ ugl }}</span><br/>грамм</li>
+					</div>
+					<div class="middle_container">
+					<div class="middle_title">Съедено:</div>
+					<li><span>{{ kkalor }}</span><br/>ккал</li>
+					<li><span>{{ belok }}</span><br/>грамм</li>
+					<li><span>{{ jiry }}</span><br/>грамм</li>
+					<li><span>{{ ugli }}</span><br/>грамм</li>
+					</div>
+					<div class="middle_container">
+					<div class="middle_title">Осталось:</div>
+					<li><span>{{ kkalor_ost }}</span><br/>ккал</li>
+					<li><span>{{ belok_ost }}</span><br/>грамм</li>
+					<li><span>{{ jiry_ost }}</span><br/>грамм</li>
+					<li><span>{{ ugli_ost }}</span><br/>грамм</li>
+					</div>
+				</div>
+                <form action="/eatadd" method="POST">
+				<div class="food_bottom">
+
+					<button class="add_food">Добавить прием</button>
+
+					<button class="create">Как составить рацион</button>
+
+                </div>
+                </form>
+			</div>
+		</div>
+	</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+ <script src="/static/js/main.js"></script>
+
+</span>
+{% endif %}
+</body>
+</html>

